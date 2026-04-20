@@ -1,1 +1,42 @@
 
+# --- CÓDIGO PARA COPIAR EN DASHBOARD (TARJETA MANUAL) ---
+type: custom:layout-card
+layout_type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr 1fr
+  grid-template-areas: |
+    "motor inventario"
+    "motor cabuyeria"
+cards:
+  # TARJETA MOTOR
+  - type: vertical-stack
+    view_layout:
+      grid-area: motor
+    cards:
+      - type: custom:mini-graph-card
+        entities: [input_number.horas_motor_totales]
+        name: HORAS TOTALES
+        show: {graph: false}
+      - type: custom:button-card
+        entity: input_text.motor_item_1_nombre
+        name: "[[[ return entity.state ]]]"
+        show_label: true
+        label: "[[[ return states['input_number.mantenimiento_progreso_1'].state + '%' ]]]"
+        styles:
+          card:
+            - background: "linear-gradient(90deg, #1a5e9a 85%, #2c2c2e 85%)"
+            - color: white
+
+  # TARJETA INVENTARIO
+  - type: custom:flex-table-card
+    view_layout:
+      grid-area: inventario
+    entities:
+      include: [input_text.inv_item_1_nombre]
+    columns:
+      - name: ITEM
+        data: state
+      - name: STOCK
+        data: input_number.stock_item_1
+      - name: ESTADO
+        data: sensor.estado_stock_item_1
