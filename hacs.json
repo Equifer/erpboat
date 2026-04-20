@@ -1,6 +1,6 @@
 {
-  "name": "Control Náutico Pro V2",
+  "name": "ERP Boat",
   "content_type": "template",
-  "description": "Control total de mantenimiento y stock con interfaz profesional editable.",
+  "description": "Sistema de gestión náutica",
   "render_readme": true
 }
